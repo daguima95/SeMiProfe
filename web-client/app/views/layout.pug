@@ -7,6 +7,7 @@ head
   // Bootstrap CSS
   link(href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether-theme-arrows-dark.min.css" rel="stylesheet")
   link(href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous" rel="stylesheet")
+  link(href="css/layout.css" rel="stylesheet")
 block head
 body(ng-app="seMiProfeApp")
 
@@ -18,7 +19,10 @@ body(ng-app="seMiProfeApp")
     .collapse.navbar-collapse
       ul.navbar-nav.mr-auto.mt-2.mt-md-0
         li.nav-item.active
-          a.nav-link(href='/')
+          a.navbar-brand(href='/')
+            | SeMiProfe
+        li.nav-item.active
+          a.nav-link(href='/search')
             | Profesores 
   .container
     block body

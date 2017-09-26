@@ -1,28 +1,24 @@
 package api.controller;
 
 import api.model.User;
-import api.repository.UserRepository;
+import api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 @RestController
 public class UserController {
     @Autowired
-    UserRepository repository;
+    UserService service;
 
-    @RequestMapping("/user")
-     public List<User> get(
-             @RequestParam(value="name", required=false) String name) {
-        List<User> users;
-        if (name != null && name.length() > 0) {
-            users = repository.findByFirstNameOrLastName(name, name);
-        } else {
-            users = repository.findAll();
-        }
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+     public Page<User> get(@RequestParam(value="search", required=false) String search, Pageable pageable) {
+
+        Page<User> users = service.get(search, pageable);
 
         return users;
     }
